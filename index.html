@@ -1,0 +1,902 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>ماز کوئست — ۵۰ مرحله</title>
+<script type="text/javascript" src="https://gc.kis.v2.scr.kaspersky-labs.com/FD126C42-EBFA-4E12-B309-BB3FDD723AC1/main.js?attr=IH-sX56cygh8jhqAFKHrC-SkXLpPjaEy9wGcQr5VcuK5mDe_bjZl3m_MlmeXwebLHz8Wh0H4WnPAGBH0Dd_afC7Ynq1eRkXBZQttzgbaUUBjAVKPOacBKl27UM9Ln7tmie9wOd8QYAcuWU58Ly0HjIVVQU_XvsBQd6F0I9Aujtmj1ukXXAiP2Eyse-erQq0zxJoaRYSusOg6KE-uhDeHqBHjbS0djWlZW6SwabORQDuAa1KQyIRDcilXDTX10Vrlpk0urm47pJkwA18RWgTbwlQr35NB1s78wOYSBRD7DAVsYj5XsnfpxxONltXjWMgHNTrlefgZfFbXbs88LuCG_ijqSt-4xr_hO_tMaIjv5uU7Lro8TDy2IMJGL3W2MYAemW0BL_883HHOy-OsFUHP_A" charset="UTF-8"></script><link rel="stylesheet" crossorigin="anonymous" href="https://gc.kis.v2.scr.kaspersky-labs.com/E3E8934C-235A-4B0E-825A-35A08381A191/abn/main.css?attr=aHR0cHM6Ly9nYXBncHQuYXBwL2FwaS92MS9jb2RlX2ludGVycHJldGVyLzcwODkxMjUvODlkMjhjOGUtMmU0Ni00YTk5LWI2ZDUtYTJhOWI2MmMxMDVhL2V5SjFjMlZ5WDJsa0lqbzNNRGc1TVRJMUxDSmphR0YwWDNSdmEyVnVJam9pT0Rsa01qaGpPR1V0TW1VME5pMDBZVGs1TFdJMlpEVXRZVEpoT1dJMk1tTXhNRFZoSWl3aVptbHNaVjl3WVhSb0lqb2lhVzVrWlhndWFIUnRiQ0o5OjF4SGc5VzpWSTdfdWZSb2JyalUxWkhQSE9TcnNtYWxGYjBuaDRMNkEtZ084T2VtZUZ3L2luZGV4Lmh0bWw"/><style>
+:root{--bg:#070b19;--panel:#0d152ecc;--pb:#1e2c5e;--tx:#e2e8f0;--mu:#94a3b8;--ac:#38bdf8;--gd:#4ade80;--wn:#fbbf24;--bd:#f87171;}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0;background:var(--bg);color:var(--tx);font-family:system-ui,'Segoe UI',Tahoma,sans-serif;overflow:hidden;user-select:none}
+#wrap{position:fixed;inset:0;display:grid;grid-template-rows:auto 1fr}
+#hud{display:flex;gap:8px;align-items:center;justify-content:space-between;padding:8px 14px;background:linear-gradient(180deg,#101a3b,#090e24);border-bottom:1px solid var(--pb);z-index:10;flex-wrap:wrap}
+.hg{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.chip{padding:5px 10px;border:1px solid var(--pb);border-radius:10px;background:var(--panel);font-size:13px;display:inline-flex;gap:6px;align-items:center}
+.chip b{color:var(--ac)}
+.bar{height:8px;width:100px;border-radius:999px;background:#060914;border:1px solid #23346b;overflow:hidden;display:inline-block}
+.bar>i{display:block;height:100%;width:100%;background:linear-gradient(90deg,var(--ac),var(--gd));transition:width .1s linear}
+button{background:#162452;color:var(--tx);border:1px solid #283e87;border-radius:8px;padding:7px 13px;cursor:pointer;font-weight:600;font-size:13px;transition:.15s;font-family:inherit}
+button:hover{background:#1e3375;border-color:var(--ac)}
+button:active{transform:translateY(1px)}
+button:disabled{opacity:.45;cursor:not-allowed}
+#game{position:relative;width:100%;height:100%}
+canvas{display:block;width:100%;height:100%}
+#toast{position:absolute;left:50%;top:16px;transform:translateX(-50%) translateY(-10px);background:rgba(13,21,46,.95);border:1px solid var(--ac);border-radius:10px;padding:8px 18px;font-size:13px;opacity:0;transition:.25s;pointer-events:none;box-shadow:0 8px 24px #0008;z-index:20}
+#toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.modal{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(4,7,18,.85);backdrop-filter:blur(4px);padding:18px;opacity:0;pointer-events:none;transition:.2s;z-index:30}
+.modal.show{opacity:1;pointer-events:auto}
+.mbox{width:min(560px,94vw);max-height:88vh;overflow-y:auto;background:linear-gradient(180deg,#101a3b,#090e24);border:1px solid var(--pb);border-radius:16px;padding:20px;box-shadow:0 20px 50px #000b;text-align:right}
+.mbox h2{margin:0 0 10px;color:var(--ac);font-size:19px}
+.mbox p{font-size:13.5px;color:var(--mu);line-height:1.7;margin:8px 0}
+.btnrow{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px;justify-content:flex-end}
+.btnrow .prim{background:#2563eb;border-color:#3b82f6;padding:10px 22px;font-size:14px}
+.btnrow .danger{background:#7f1d1d;border-color:#991b1b}
+.btnrow .gold{background:#713f12;border-color:#a16207}
+.shop-sec{margin:12px 0}
+.shop-sec h3{color:var(--wn);font-size:14px;margin:8px 0}
+.shop-item{background:#090f24;border:1px solid #1c2a59;border-radius:10px;padding:10px;margin-bottom:8px;font-size:13px}
+.shop-item.si-active{border-color:var(--gd);box-shadow:0 0 8px #4ade8044}
+.si-head{display:flex;gap:6px;align-items:center;font-size:14px}
+.si-head b{color:#fff}
+.si-have{color:var(--mu);font-size:12px}
+.si-desc{color:var(--mu);font-size:12px;margin:5px 0;line-height:1.6}
+.si-foot{display:flex;gap:8px;align-items:center;justify-content:space-between;margin-top:6px}
+.si-lvl{color:var(--ac);font-size:12px}
+.si-max{color:var(--gd);font-size:12px;font-weight:700}
+.skin-dot{width:16px;height:16px;border-radius:50%;display:inline-block}
+.shop-item button:disabled,.shop-item button.disabled{opacity:.45;cursor:not-allowed;pointer-events:none;filter:grayscale(.6)}
+.kbd{background:#172450;border:1px solid #334888;border-radius:4px;padding:1px 6px;font-size:11px;color:#fff}
+.features-list{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:12px 0}
+.feat-item{background:#090f24;border:1px solid #1c2a59;border-radius:8px;padding:7px 9px;font-size:12px}
+.feat-item b{color:#fff;display:block;margin-bottom:2px}
+</style>
+</head>
+<body>
+<div id="wrap">
+  <div id="hud">
+    <div class="hg">
+      <div class="chip"><span style="color:var(--mu)">مرحله:</span> <b id="stageNum">1</b>/50</div>
+      <div class="chip"><span style="color:var(--mu)">بیوم:</span> <b id="biomeName">نئون کریپت</b></div>
+      <div class="chip"><b id="starTotal">⭐ مجموع: 0</b></div>
+      <div class="chip"><span style="color:var(--mu)">این مرحله:</span> <b id="starCount">⭐ 0/3</b></div>
+      <div class="chip" id="keyChip" style="display:none"><span style="color:var(--mu)">کلید:</span> <b id="keyCount">0/0</b></div>
+      <div class="chip"><span id="itemMaster">🗝️ x0</span></div>
+      <div class="chip"><span id="itemBeacon">💡 x0</span></div>
+      <div class="chip"><span id="itemShield">🛡️ x0</span></div>
+      <div class="chip" id="pulseChip" style="display:none"><span style="color:var(--mu)">پالس (Space):</span><span class="bar"><i id="pulseFill"></i></span></div>
+      <div class="chip" id="timeChip" style="display:none"><span style="color:var(--mu)">زمان:</span> <b id="timeLeft">--</b></div>
+    </div>
+    <div class="hg">
+      <button id="btnRestart">شروع مجدد (R)</button>
+      <button id="btnPause">توقف (Esc)</button>
+    </div>
+  </div>
+  <div id="game">
+    <canvas id="c"></canvas>
+    <div id="toast"></div>
+
+    <div class="modal show" id="startModal">
+      <div class="mbox">
+        <h2>ماز کوئست — ۵۰ مرحله</h2>
+        <p>کاوشگر را در ۵ بیوم هدایت کنید. کلیدها را بگیرید، درها را باز کنید، ۳ ستارهٔ هر مرحله را بیابید و با ستاره‌ها ارتقا و پوسته بخرید!</p>
+        <div class="features-list">
+          <div class="feat-item"><b>🎮 حرکت</b><span class="kbd">WASD</span> / جهت‌نما</div>
+          <div class="feat-item"><b>⭐ ستاره‌ها</b>۳ ستاره در بن‌بست‌ها — ارز خرید</div>
+          <div class="feat-item"><b>🛒 فروشگاه</b>ارتقا پالس، کلید همه‌کاره، سپر گدازه و پوسته‌ها</div>
+          <div class="feat-item"><b>🌌 تاریکی</b>مراحل تاریک با <span class="kbd">Space</span> پالس بدهید</div>
+        </div>
+        <div class="btnrow">
+          <button id="btnStart" class="prim">شروع بازی</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal" id="pauseModal">
+      <div class="mbox">
+        <h2>بازی متوقف شد</h2>
+        <div style="display:flex;flex-direction:column;gap:10px;margin-top:14px">
+          <button id="btnResume" class="prim" style="padding:10px">ادامه بازی</button>
+          <button id="btnShopPause" style="padding:10px">🛒 فروشگاه</button>
+          <button id="btnRestartLevel" style="padding:10px">شروع مجدد مرحله</button>
+          <button id="btnNewGame" class="danger" style="padding:10px">بازی جدید / ریست کامل</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal" id="completeModal">
+      <div class="mbox">
+        <h2>🎉 مرحله پاکسازی شد!</h2>
+        <p>مرحله: <b id="mStage" style="color:var(--ac)">1</b></p>
+        <p>ستاره‌های این مرحله: <b id="mStars" style="color:var(--wn)"></b></p>
+        <p>مجموع ستاره‌ها: <b id="mTotal" style="color:var(--gd)"></b></p>
+        <div class="btnrow" style="justify-content:center">
+          <button id="btnNextLevel" class="prim">مرحله بعد</button>
+          <button id="btnShopComplete" class="gold">فروشگاه</button>
+          <button id="btnRestartComplete">شروع مجدد مرحله</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal" id="shopModal">
+      <div class="mbox">
+        <h2>🛒 فروشگاه — <span id="shopStars">⭐ مجموع: 0</span></h2>
+        <div class="shop-sec"><h3>ارتقاهای دائمی</h3><div id="shopUpgrades"></div></div>
+        <div class="shop-sec"><h3>مصرفی‌ها</h3><div id="shopConsumables"></div></div>
+        <div class="shop-sec"><h3>پوسته‌های کاراکتر (دائمی)</h3><div id="shopSkins"></div></div>
+        <div class="btnrow"><button id="btnShopClose2">بستن</button></div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+
+"use strict";
+/* ============ Maze Quest — Final ============ */
+const $ = id => document.getElementById(id);
+const canvas = $('c'), ctx = canvas.getContext('2d');
+const darkCanvas = document.createElement('canvas'), darkCtx = darkCanvas.getContext('2d');
+let W=0,H=0,DPR=1;
+function resize(){
+  DPR = Math.max(1, Math.min(2, window.devicePixelRatio||1));
+  const r = canvas.getBoundingClientRect();
+  W = Math.max(1, Math.floor(r.width*DPR)); H = Math.max(1, Math.floor(r.height*DPR));
+  canvas.width=W; canvas.height=H; darkCanvas.width=W; darkCanvas.height=H;
+}
+addEventListener('resize', resize);
+
+/* ---------- Audio (Web Audio synth) ---------- */
+let AC=null;
+function ac(){ if(!AC){ try{ AC=new (window.AudioContext||window.webkitAudioContext)(); }catch(e){} } return AC; }
+function tone(freq, dur, type='sine', vol=0.15, when=0, slide=0){
+  const a=ac(); if(!a) return;
+  const o=a.createOscillator(), g=a.createGain();
+  o.type=type; o.frequency.setValueAtTime(freq, a.currentTime+when);
+  if(slide) o.frequency.exponentialRampToValueAtTime(Math.max(30,freq+slide), a.currentTime+when+dur);
+  g.gain.setValueAtTime(0, a.currentTime+when);
+  g.gain.linearRampToValueAtTime(vol, a.currentTime+when+0.01);
+  g.gain.exponentialRampToValueAtTime(0.0001, a.currentTime+when+dur);
+  o.connect(g); g.connect(a.destination);
+  o.start(a.currentTime+when); o.stop(a.currentTime+when+dur+0.05);
+}
+const SFX = {
+  step(){ tone(140,0.06,'triangle',0.05); },
+  star(){ tone(880,0.1,'sine',0.15); tone(1320,0.14,'sine',0.12,0.08); },
+  key(){ tone(520,0.08,'square',0.1); tone(780,0.12,'square',0.1,0.07); },
+  door(){ tone(200,0.15,'sawtooth',0.09,0,120); tone(320,0.2,'triangle',0.1,0.1); },
+  buy(){ tone(660,0.1,'sine',0.14); tone(990,0.14,'sine',0.12,0.08); tone(1320,0.2,'sine',0.1,0.16); },
+  deny(){ tone(180,0.18,'sawtooth',0.1); },
+  lava(){ tone(120,0.25,'sawtooth',0.14,0,-60); },
+  clear(){ [523,659,784,1046].forEach((f,i)=>tone(f,0.18,'sine',0.14,i*0.12)); },
+  portal(){ tone(400,0.4,'sine',0.12,0,600); },
+  pulse(){ tone(300,0.3,'sine',0.1,0,500); }
+};
+
+/* ---------- Seeded PRNG: Mulberry32 ---------- */
+function mulberry32(seed){
+  let a = seed >>> 0;
+  return function(){
+    a |= 0; a = (a + 0x6D2B79F5) | 0;
+    let t = Math.imul(a ^ (a >>> 15), 1 | a);
+    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  };
+}
+function hashLevel(lvl){ // SplitMix32-style mix of the level number
+  let x = (lvl * 0x9E3779B9) >>> 0;
+  x ^= x >>> 16; x = Math.imul(x, 0x85EBCA6B) >>> 0;
+  x ^= x >>> 13; x = Math.imul(x, 0xC2B2AE35) >>> 0;
+  x ^= x >>> 16;
+  return x >>> 0;
+}
+
+/* ---------- Persistence ---------- */
+const SAVE_KEY = 'mazequest.final.v1';
+const DEF_SAVE = {
+  totalStars: 0, levelBest: {}, currentLevel: 1,
+  upgrades: { pulse: 0 },
+  items: { master: 0, beacon: 0, shield: 0 },
+  beaconPending: false,
+  skins: { classic: true }, activeSkin: 'classic'
+};
+let save = load();
+function load(){
+  try{ const d = JSON.parse(localStorage.getItem(SAVE_KEY));
+    if(d && typeof d==='object') return Object.assign(JSON.parse(JSON.stringify(DEF_SAVE)), d, {
+      upgrades: Object.assign({}, DEF_SAVE.upgrades, d.upgrades||{}),
+      items: Object.assign({}, DEF_SAVE.items, d.items||{}),
+      skins: Object.assign({}, DEF_SAVE.skins, d.skins||{})
+    });
+  }catch(e){}
+  return JSON.parse(JSON.stringify(DEF_SAVE));
+}
+function persist(){ try{ localStorage.setItem(SAVE_KEY, JSON.stringify(save)); }catch(e){} }
+
+/* ---------- Shop data ---------- */
+const SHOP = {
+  upgrades: [
+    { id:'pulse', name:'افزایش شعاع پالس دید', desc:'افزایش ۲۵٪ شعاع پالس دید در مرحلهٔ هر سطح.', icon:'⚡',
+      levels:[{cost:12,label:'سطح ۱ (+۲۵٪)'},{cost:20,label:'سطح ۲ (+۵۰٪)'}] }
+  ],
+  consumables: [
+    { id:'master', name:'کلید همه‌کاره', icon:'🗝️', cost:8, max:3, desc:'اگر کلید متناسب در نداشته باشی، خودکار مصرف می‌شود.' },
+    { id:'beacon', name:'راهنمای نوری مسیر', icon:'💡', cost:5, max:1, desc:'ابتدای مرحلهٔ بعد به‌صورت خودکار ۳ ثانیه مسیر درخشان نشان می‌دهد.' },
+    { id:'shield', name:'سپر گدازه', icon:'🛡️', cost:6, max:2, desc:'آسیب لاوا را جذب می‌کند و ۲ ثانیه مصونیت می‌دهد.' }
+  ],
+  skins: [
+    { id:'classic', name:'پیش‌فرض نئونی', icon:'🔵', cost:0,  col:'#4ade80', col2:'#86efac', glow:'#4ade80' },
+    { id:'gold',    name:'پوسته طلایی',     icon:'🟡', cost:18, col:'#fbbf24', col2:'#fde68a', glow:'#f59e0b' },
+    { id:'crystal', name:'پوسته کریستالی',  icon:'💎', cost:25, col:'#38bdf8', col2:'#e0f2fe', glow:'#38bdf8' },
+    { id:'ember',   name:'پوسته آتشین',     icon:'🔥', cost:30, col:'#f97316', col2:'#fed7aa', glow:'#ef4444' },
+    { id:'cyber',   name:'پوسته سایبری',    icon:'🟣', cost:40, col:'#a855f7', col2:'#f3e8ff', glow:'#a855f7' }
+  ]
+};
+
+/* ---------- Biomes & level config ---------- */
+function getBiome(lvl){
+  if(lvl<=10) return {name:'نئون کریپت', code:'neon',   wall:'#1e2c5e', floor1:'#070b19', floor2:'#0d152a', accent:'#38bdf8'};
+  if(lvl<=20) return {name:'معبد باستانی', code:'temple', wall:'#78350f', floor1:'#1c1917', floor2:'#292524', accent:'#fbbf24'};
+  if(lvl<=30) return {name:'پناهگاه وارپ', code:'warp',  wall:'#581c87', floor1:'#0f071a', floor2:'#180d2b', accent:'#c084fc'};
+  if(lvl<=40) return {name:'هسته مذاب',   code:'molten',wall:'#991b1b', floor1:'#180707', floor2:'#260d0d', accent:'#f87171'};
+  return        {name:'سایبر وید',        code:'cyber', wall:'#065f46', floor1:'#02100b', floor2:'#041c14', accent:'#34d399'};
+}
+const MAX_LEVELS = 50;
+function getLevelConfig(lvl){
+  const realm = Math.floor((lvl-1)/10);   // 0..4 : five realms of 10 levels
+  const r = (lvl-1)%10;                   // 0..9 : position inside the realm (0 => level 1 of realm)
+  // size: gentle start, steeper later — later mazes feel bigger and longer
+  let size = Math.min(37, 9 + Math.floor(Math.pow((lvl-1)/49, 1.15)*28));
+  if(size%2===0) size++;
+  const biome = getBiome(lvl);
+  // Darkness + Pulse ONLY in last 2-3 levels of each realm (8-10, 18-20, ... 48-50)
+  const isDark = r>=7;
+  const fogRadius = isDark ? Math.max(2.6, 3.8 - realm*0.2) : 6.0;
+  // keys/doors: original pacing (start lvl4, +1 key every 5 of 100) mapped onto realm-relative thresholds
+  const kd = (r<1)? 0 : Math.min(4, Math.floor((r-1)/2.5)+1);
+  // fewer extra loops in later levels => more branchy / longer mazes
+  const loops = Math.max(2, Math.floor(size*0.35) - Math.floor((lvl-1)/6));
+  // realm-relative mechanics thresholds
+  let teleporters=0, sand=0, lava=0;
+  if(biome.code==='warp'   && r>=1) teleporters = Math.min(3, 1+Math.floor((r-1)/3));      // realm 3 (21-30)
+  if(biome.code==='temple')         sand          = Math.min(6, 2+Math.floor(r/1.5));      // realm 2 (11-20)
+  if(biome.code==='molten')         lava          = Math.min(8, 2+Math.floor(r/1.5));      // realm 4 (31-40)
+  return { lvl, size, biome, realm, hasDark:isDark, fogRadius, hasPulse:isDark,
+    keys:kd, doors:kd, teleporters, sand, lava, loops };
+}
+
+/* ---------- Maze state ---------- */
+const CELL = { NONE:0, KEY:1, DOOR:2, TELE:3, STAR:4, SAND:5, LAVA:6 };
+let grid, items, Wg=0, Hg=0, cfg=null, rng=null;
+let telePairs = new Map();
+let player = { x:1,y:1,tx:1,ty:1,animT:1,dirX:1,dirY:0 };
+let exitPos = {x:1,y:1};
+let keysHeld=0, totalKeysInLevel=0, totalDoorsInLevel=0, levelStarsCollected=0, starsInLevel=[];
+let pulseEnergy=1, pulseActive=0;
+let invulnUntil=0;
+let beaconTimer=0, beaconPath=[]; // seconds remaining, cell path
+let timeLimitActive=false, timeLeft=0;
+let levelStart=0, deathCount=0;
+const idx = (x,y)=> y*Wg+x;
+
+function generateMaze(w,h){
+  grid = new Uint8Array(w*h).fill(1);
+  const visited = new Uint8Array(w*h);
+  const stack = [{x:1,y:1}];
+  visited[idx(1,1)]=1; grid[idx(1,1)]=0;
+  const dirs=[[2,0],[-2,0],[0,2],[0,-2]];
+  while(stack.length){
+    const cur = stack[stack.length-1];
+    const nb=[];
+    for(const [dx,dy] of dirs){
+      const nx=cur.x+dx, ny=cur.y+dy;
+      if(nx>0&&nx<w-1&&ny>0&&ny<h-1&&!visited[ny*w+nx]) nb.push({x:nx,y:ny,wx:cur.x+dx/2,wy:cur.y+dy/2});
+    }
+    if(nb.length){
+      const n = nb[Math.floor(rng()*nb.length)];
+      visited[idx(n.x,n.y)]=1; grid[idx(n.wx,n.wy)]=0; grid[idx(n.x,n.y)]=0;
+      stack.push({x:n.x,y:n.y});
+    } else stack.pop();
+  }
+  // deterministic loops (fewer in later levels => branchier, longer mazes)
+  const extra = (cfg && cfg.loops!=null) ? Math.max(2, cfg.loops) : Math.floor(w*0.35);
+  for(let i=0;i<extra;i++){
+    const rx=1+Math.floor(rng()*(w-2)), ry=1+Math.floor(rng()*(h-2));
+    if(grid[idx(rx,ry)]===1 && (
+      (grid[idx(rx-1,ry)]===0&&grid[idx(rx+1,ry)]===0)||(grid[idx(rx,ry-1)]===0&&grid[idx(rx,ry+1)]===0)
+    )) grid[idx(rx,ry)]=0;
+  }
+}
+function bfs(startX,startY,blockedDoorSet){
+  const dist = new Int32Array(Wg*Hg).fill(-1);
+  const q=[{x:startX,y:startY}]; dist[idx(startX,startY)]=0;
+  for(let qi=0;qi<q.length;qi++){
+    const {x,y}=q[qi];
+    for(const [dx,dy] of [[1,0],[-1,0],[0,1],[0,-1]]){
+      const nx=x+dx, ny=y+dy;
+      if(nx<0||nx>=Wg||ny<0||ny>=Hg) continue;
+      if(grid[idx(nx,ny)]===1) continue;
+      if(dist[idx(nx,ny)]!==-1) continue;
+      if(blockedDoorSet && blockedDoorSet.has(nx+','+ny)) continue;
+      dist[idx(nx,ny)]=dist[idx(x,y)]+1; q.push({x:nx,y:ny});
+    }
+  }
+  return dist;
+}
+function reachableCells(startX,startY,blocked,reserved){
+  const dist = bfs(startX,startY,blocked); const out=[];
+  for(let y=1;y<Hg-1;y++)for(let x=1;x<Wg-1;x++){
+    if(dist[idx(x,y)]!==-1 && grid[idx(x,y)]===0 && items[idx(x,y)]===CELL.NONE){
+      const k=x+','+y;
+      if(!reserved.has(k)) out.push({x,y,d:dist[idx(x,y)]});
+    }
+  }
+  return out;
+}
+function wallNeighbors(x,y){
+  return (grid[idx(x+1,y)]===1?1:0)+(grid[idx(x-1,y)]===1?1:0)+(grid[idx(x,y+1)]===1?1:0)+(grid[idx(x,y-1)]===1?1:0);
+}
+function createKeyDoorLayout(doorCount){
+  const placedDoors=[], placedKeys=[];
+  const reserved = new Set(['1,1', exitPos.x+','+exitPos.y]);
+  for(let n=0;n<doorCount;n++){
+    let placed=false;
+    for(let a=0;a<120&&!placed;a++){
+      const blockedNow = new Set(placedDoors.map(d=>d.x+','+d.y));
+      const reach = reachableCells(1,1,blockedNow,reserved);
+      const dcand = reach.filter(c=>{
+        if((c.x===1&&c.y===1)||(c.x===exitPos.x&&c.y===exitPos.y)) return false;
+        return wallNeighbors(c.x,c.y)<=2;
+      });
+      if(!dcand.length) break;
+      const door = dcand[Math.floor(rng()*dcand.length)];
+      const blocked2 = new Set(blockedNow); blocked2.add(door.x+','+door.y);
+      const dist2 = bfs(1,1,blocked2);
+      const kcand=[];
+      for(let y=1;y<Hg-1;y++)for(let x=1;x<Wg-1;x++){
+        const k=x+','+y;
+        if(reserved.has(k)||items[idx(x,y)]!==CELL.NONE||grid[idx(x,y)]!==0) continue;
+        if(dist2[idx(x,y)]===-1) continue;
+        if(x===door.x&&y===door.y) continue;
+        kcand.push({x,y,d:dist2[idx(x,y)]});
+      }
+      if(!kcand.length) continue;
+      kcand.sort((a,b)=>b.d-a.d);
+      const top = kcand.slice(0, Math.max(1, Math.min(12, kcand.length)));
+      const key = top[Math.floor(rng()*top.length)];
+      placedDoors.push({x:door.x,y:door.y});
+      placedKeys.push({x:key.x,y:key.y});
+      reserved.add(door.x+','+door.y); reserved.add(key.x+','+key.y);
+      placed=true;
+    }
+  }
+  return {placedDoors, placedKeys, reserved};
+}
+function placeStarsHazardsTeleporters(reserved){
+  starsInLevel=[];
+  const blocked = new Set();
+  // Exactly 3 stars: prefer dead-ends (max wall neighbors), then distance
+  for(let s=0;s<3;s++){
+    const reach = reachableCells(1,1,blocked,reserved);
+    if(!reach.length) break;
+    reach.sort((a,b)=>{
+      const na=wallNeighbors(a.x,a.y), nb=wallNeighbors(b.x,b.y);
+      return (nb-na)||(b.d-a.d);
+    });
+    const top = reach.slice(0, Math.max(1, Math.min(8, reach.length)));
+    const c = top[Math.floor(rng()*top.length)];
+    items[idx(c.x,c.y)] = CELL.STAR;
+    reserved.add(c.x+','+c.y);
+    starsInLevel.push({x:c.x,y:c.y,collected:false});
+  }
+  const placeN = (n, cellType)=>{
+    for(let i=0;i<n;i++){
+      const free=[];
+      for(let y=1;y<Hg-1;y++)for(let x=1;x<Wg-1;x++){
+        if(grid[idx(x,y)]===0&&items[idx(x,y)]===CELL.NONE&&!reserved.has(x+','+y)) free.push({x,y});
+      }
+      if(!free.length) break;
+      const c = free[Math.floor(rng()*free.length)];
+      items[idx(c.x,c.y)] = cellType; reserved.add(c.x+','+c.y);
+    }
+  };
+  placeN(cfg.sand, CELL.SAND);
+  placeN(cfg.lava, CELL.LAVA);
+  for(let p=0;p<cfg.teleporters;p++){
+    const free=[];
+    for(let y=1;y<Hg-1;y++)for(let x=1;x<Wg-1;x++){
+      if(grid[idx(x,y)]===0&&items[idx(x,y)]===CELL.NONE&&!reserved.has(x+','+y)) free.push({x,y});
+    }
+    if(free.length<2) break;
+    const i1=Math.floor(rng()*free.length); const t1=free[i1]; free.splice(i1,1);
+    const t2=free[Math.floor(rng()*free.length)];
+    items[idx(t1.x,t1.y)]=CELL.TELE; items[idx(t2.x,t2.y)]=CELL.TELE;
+    telePairs.set(t1.x+','+t1.y,t2); telePairs.set(t2.x+','+t2.y,t1);
+    reserved.add(t1.x+','+t1.y); reserved.add(t2.x+','+t2.y);
+  }
+}
+
+function initLevel(lvl){
+  cfg = getLevelConfig(lvl);
+  Wg=Hg=cfg.size;
+  rng = mulberry32(hashLevel(lvl));
+  telePairs.clear();
+  items = new Uint8Array(Wg*Hg).fill(CELL.NONE);
+  generateMaze(Wg,Hg);
+  player.x=player.tx=1; player.y=player.ty=1; player.animT=1; player.dirX=1; player.dirY=0;
+  const dist0 = bfs(1,1,null);
+  let far={x:1,y:1,d:0};
+  for(let y=1;y<Hg-1;y++)for(let x=1;x<Wg-1;x++){
+    if(grid[idx(x,y)]===0&&dist0[idx(x,y)]>far.d) far={x,y,d:dist0[idx(x,y)]};
+  }
+  exitPos={x:far.x,y:far.y};
+  const {placedDoors, placedKeys, reserved} = createKeyDoorLayout(Math.min(cfg.keys,cfg.doors));
+  for(const d of placedDoors) items[idx(d.x,d.y)]=CELL.DOOR;
+  for(const k of placedKeys) items[idx(k.x,k.y)]=CELL.KEY;
+  totalKeysInLevel=placedKeys.length; totalDoorsInLevel=placedDoors.length;
+  placeStarsHazardsTeleporters(reserved);
+  keysHeld=0; levelStarsCollected=0; pulseEnergy=1; pulseActive=0; invulnUntil=0; deathCount=0;
+  beaconTimer=0; beaconPath=[];
+  // Beacon auto-activate
+  if(save.beaconPending && save.items.beacon>0){
+    save.beaconPending=false; save.items.beacon--; persist();
+    beaconTimer=3;
+    computeBeaconPath();
+    showToast('💡 راهنمای نوری فعال شد!', 1600);
+  }
+  // HUD
+  $('stageNum').textContent = cfg.lvl;
+  $('biomeName').textContent = cfg.biome.name;
+  $('keyChip').style.display = totalDoorsInLevel>0 ? 'inline-flex':'none';
+  updateHUD();
+  if(cfg.hasPulse){
+    $('pulseChip').style.display='inline-flex';
+    $('pulseFill').style.width='100%';
+  } else $('pulseChip').style.display='none';
+  timeLimitActive=false; $('timeChip').style.display='none';
+  showToast('مرحله '+cfg.lvl+' — '+cfg.biome.name, 2000);
+}
+
+function updateHUD(){
+  const total = save.totalStars;
+  $('starCount').textContent = '⭐ '+levelStarsCollected+'/3';
+  $('starTotal').textContent = '⭐ مجموع: '+total;
+  $('keyCount').textContent = keysHeld+'/'+Math.max(1,totalDoorsInLevel);
+  $('itemMaster').textContent = '🗝️ x'+save.items.master;
+  $('itemBeacon').textContent = '💡 x'+save.items.beacon;
+  $('itemShield').textContent = '🛡️ x'+save.items.shield;
+}
+function computeBeaconPath(){
+  // Strictly find shortest path from player to exitPos.
+  // Ignore keys, doors, hazards, etc. Only walls block movement.
+  const dist = bfs(player.x, player.y, null); // null => only walls block
+  beaconPath=[];
+  if(dist[idx(exitPos.x,exitPos.y)]===-1) return; // no wall-only path exists
+  // walk back from exit to player along decreasing distance
+  const path=[{x:exitPos.x,y:exitPos.y}];
+  let cx=exitPos.x, cy=exitPos.y;
+  while(!(cx===player.x&&cy===player.y)){
+    let found=false;
+    for(const [dx,dy] of [[1,0],[-1,0],[0,1],[0,-1]]){
+      const nx=cx+dx, ny=cy+dy;
+      if(nx<0||nx>=Wg||ny<0||ny>=Hg) continue;
+      if(dist[idx(nx,ny)]===-1) continue;
+      if(dist[idx(nx,ny)] < dist[idx(cx,cy)]){
+        cx=nx; cy=ny; path.push({x:cx,y:cy}); found=true; break;
+      }
+    }
+    if(!found) break;
+  }
+  path.reverse();
+  beaconPath=path;
+}
+
+/* ---------- Controls ---------- */
+const keysDown={};
+addEventListener('keydown', e=>{
+  const k=e.key.toLowerCase();
+  keysDown[k]=true;
+  if(k==='escape'||k==='p'){ togglePause(); e.preventDefault(); return; }
+  if(k==='r'){ if(running){ initLevel(currentLevel); } e.preventDefault(); return; }
+  if(!running||paused) return;
+  if(k===' '&&cfg&&cfg.hasPulse){
+    if(pulseEnergy>=0.95){ pulseEnergy=0; pulseActive=1.4; SFX.pulse(); showToast('⚡ پالس دید فعال شد!',900); }
+    e.preventDefault();
+  }
+  if(['arrowup','arrowdown','arrowleft','arrowright','w','a','s','d',' '].includes(k)) e.preventDefault();
+});
+addEventListener('keyup', e=>{ keysDown[e.key.toLowerCase()]=false; });
+
+/* ---------- Movement / collision ---------- */
+function isLavaActive(x,y,t){ return Math.sin(t*2.6 + x*1.5 + y*2.1) > 0.1; }
+function canMoveTo(x,y,t){
+  if(x<0||x>=Wg||y<0||y>=Hg) return false;
+  if(grid[idx(x,y)]===1) return false;
+  const it=items[idx(x,y)];
+  if(it===CELL.DOOR && keysHeld<=0 && save.items.master<=0) return false;
+  if(it===CELL.LAVA && isLavaActive(x,y,t)) return false;
+  return true;
+}
+function tryOpenDoor(x,y){
+  if(keysHeld>0){ keysHeld--; updateHUD(); items[idx(x,y)]=CELL.NONE; SFX.door(); showToast('🚪 در با کلید باز شد',900); return true; }
+  if(save.items.master>0){ save.items.master--; persist(); updateHUD(); items[idx(x,y)]=CELL.NONE; SFX.door(); showToast('🗝️ کلید همه‌کاره مصرف شد!',1200); return true; }
+  SFX.deny(); showToast('کلیدی نداری! 🗝️',1000); return false;
+}
+function hitLava(){
+  if(invulnUntil>0) return;
+  if(save.items.shield>0){
+    save.items.shield--; persist(); updateHUD();
+    invulnUntil = 2; // seconds
+    SFX.buy();
+    showToast('🛡️ سپر گدازه فعال شد! ۲ ثانیه مصونیت',1400);
+    return;
+  }
+  deathCount++;
+  SFX.lava();
+  showToast('🔥 سوختید! بازگشت به آغاز مرحله.',1400);
+  player.x=player.tx=1; player.y=player.ty=1; player.animT=1;
+}
+function onCellReached(x,y,t){
+  const i=idx(x,y), it=items[i];
+  if(it===CELL.KEY){
+    items[i]=CELL.NONE; keysHeld++; updateHUD(); SFX.key();
+    showToast('🗝️ کلید برداشته شد ('+keysHeld+')',1000);
+  } else if(it===CELL.DOOR){ tryOpenDoor(x,y); }
+  else if(it===CELL.STAR){
+    items[i]=CELL.NONE; levelStarsCollected++; SFX.star();
+    save.totalStars++;
+    save.levelBest[currentLevel]=Math.max(save.levelBest[currentLevel]||0, levelStarsCollected);
+    persist(); updateHUD();
+    showToast('⭐ ستاره پیدا شد!',1000);
+  } else if(it===CELL.LAVA && isLavaActive(x,y,t)){ hitLava(); }
+  else if(it===CELL.TELE){
+    const d=telePairs.get(x+','+y);
+    if(d){ player.x=player.tx=d.x; player.y=player.ty=d.y; player.animT=1; SFX.portal(); showToast('🌀 تله‌پورت شدی!',800); }
+  }
+  if(x===exitPos.x && y===exitPos.y && !levelDonePending){
+    levelDonePending=true;
+    SFX.clear();
+    // save stars
+    save.levelBest[currentLevel]=Math.max(save.levelBest[currentLevel]||0, levelStarsCollected);
+    persist();
+    $('mStage').textContent=currentLevel;
+    $('mStars').textContent=levelStarsCollected+' / 3';
+    $('mTotal').textContent=save.totalStars;
+    setTimeout(()=>{ showComplete(); levelDonePending=false; }, 700);
+  }
+}
+let levelDonePending=false;
+
+/* ---------- Pause / modals ---------- */
+let running=false, paused=false, lastTime=0, currentLevel=1;
+function togglePause(){ if(!running) return; paused=!paused; $('pauseModal').classList.toggle('show',paused); }
+function showComplete(){ paused=true; $('completeModal').classList.add('show'); }
+function hideComplete(){ paused=false; $('completeModal').classList.remove('show'); }
+
+/* ---------- Shop ---------- */
+function openShop(from){
+  paused=true; shopReturn=from||'pause';
+  renderShop(); $('shopModal').classList.add('show');
+}
+let shopReturn='pause';
+function closeShop(){
+  $('shopModal').classList.remove('show');
+  if(shopReturn==='complete'){ showComplete(); }
+  else if(shopReturn==='pause' && running){ $('pauseModal').classList.add('show'); }
+  else { paused=false; }
+}
+function renderShop(){
+  $('shopStars').textContent='⭐ مجموع: '+save.totalStars;
+  // upgrades
+  const up=$('shopUpgrades'); up.innerHTML='';
+  for(const u of SHOP.upgrades){
+    const lvl = save.upgrades[u.id];
+    const div=document.createElement('div'); div.className='shop-item';
+    const next = lvl < u.levels.length ? u.levels[lvl] : null;
+    div.innerHTML = '<div class="si-head">'+u.icon+' <b>'+u.name+'</b></div>'
+      +'<div class="si-desc">'+u.desc+'</div>'
+      +'<div class="si-foot"><span class="si-lvl">سطح فعلی: '+lvl+'</span>'
+      +(next? '<button data-up="'+u.id+'"'+(save.totalStars<next.cost?' disabled class="disabled"':'')+'>'+next.label+' — ⭐'+next.cost+'</button>'
+            : '<span class="si-max">حداکثر ✔</span>')+'</div>';
+    up.appendChild(div);
+  }
+  // consumables
+  const co=$('shopConsumables'); co.innerHTML='';
+  for(const c of SHOP.consumables){
+    const have = save.items[c.id];
+    const div=document.createElement('div'); div.className='shop-item';
+    const full = have>=c.max;
+    div.innerHTML='<div class="si-head">'+c.icon+' <b>'+c.name+'</b> <span class="si-have">(دارید: '+have+'/'+c.max+')</span></div>'
+      +'<div class="si-desc">'+c.desc+'</div>'
+      +'<div class="si-foot"><button data-buy="'+c.id+'"'+((full||save.totalStars<c.cost)?' disabled class="disabled"':'')+'>'+(full?'ظرفیت پر است':'خرید — ⭐'+c.cost)+'</button></div>';
+    co.appendChild(div);
+  }
+  // skins
+  const sk=$('shopSkins'); sk.innerHTML='';
+  for(const s of SHOP.skins){
+    const owned = save.skins[s.id], active = save.activeSkin===s.id;
+    const div=document.createElement('div'); div.className='shop-item'+(active?' si-active':'');
+    let btn;
+    if(active) btn='<span class="si-max">فعال ✔</span>';
+    else if(owned) btn='<button data-skin="'+s.id+'">انتخاب</button>';
+    else btn='<button data-skin="'+s.id+'"'+(save.totalStars<s.cost?' disabled class="disabled"':'')+'>خرید — ⭐'+s.cost+'</button>';
+    div.innerHTML='<div class="si-head"><span class="skin-dot" style="background:'+s.col+';box-shadow:0 0 8px '+s.glow+'"></span> <b>'+s.name+'</b></div>'
+      +'<div class="si-foot">'+btn+'</div>';
+    sk.appendChild(div);
+  }
+}
+$('shopModal').addEventListener('click', e=>{
+  const b=e.target.closest('button'); if(!b) return;
+  if(b.id==='btnShopClose'){ closeShop(); return; }
+  if(b.disabled||b.classList.contains('disabled')) return;
+  if(b.dataset.up){
+    const u=SHOP.upgrades.find(x=>x.id===b.dataset.up);
+    const lvl=save.upgrades[u.id];
+    if(lvl>=u.levels.length){ SFX.deny(); return; }
+    const next=u.levels[lvl];
+    if(save.totalStars<next.cost){ SFX.deny(); showToast('⭐ ستاره کافی ندارید!',1200); return; }
+    save.totalStars-=next.cost; save.upgrades[u.id]++; persist(); SFX.buy(); renderShop(); updateHUD();
+    showToast('✔ ارتقا خریداری شد!',1200);
+  } else if(b.dataset.buy){
+    const c=SHOP.consumables.find(x=>x.id===b.dataset.buy);
+    if(save.items[c.id]>=c.max){ SFX.deny(); return; }
+    if(save.totalStars<c.cost){ SFX.deny(); showToast('⭐ ستاره کافی ندارید!',1200); return; }
+    save.totalStars-=c.cost; save.items[c.id]++; persist();
+    if(c.id==='beacon') save.beaconPending=true;
+    SFX.buy(); renderShop(); updateHUD();
+    showToast('✔ خرید انجام شد!',1200);
+  } else if(b.dataset.skin){
+    const s=SHOP.skins.find(x=>x.id===b.dataset.skin);
+    if(!save.skins[s.id]){
+      if(save.totalStars<s.cost){ SFX.deny(); showToast('⭐ ستاره کافی ندارید!',1200); return; }
+      save.totalStars-=s.cost; save.skins[s.id]=true; persist(); SFX.buy();
+      showToast('✔ پوسته خریداری شد!',1200);
+    }
+    save.activeSkin=s.id; persist(); renderShop();
+  }
+});
+
+/* ---------- Buttons ---------- */
+$('btnStart').addEventListener('click', ()=>{
+  ac(); $('startModal').classList.remove('show');
+  if(!running){ resize(); initLevel(currentLevel); running=true; paused=false; lastTime=performance.now(); requestAnimationFrame(loop); }
+});
+$('btnRestart').addEventListener('click', ()=>{ if(running) initLevel(currentLevel); });
+$('btnPause').addEventListener('click', togglePause);
+$('btnResume').addEventListener('click', ()=>{ paused=false; $('pauseModal').classList.remove('show'); });
+$('btnRestartLevel').addEventListener('click', ()=>{ paused=false; $('pauseModal').classList.remove('show'); initLevel(currentLevel); });
+$('btnNewGame').addEventListener('click', ()=>{
+  save = JSON.parse(JSON.stringify(DEF_SAVE)); persist();
+  paused=false; $('pauseModal').classList.remove('show');
+  currentLevel=1; initLevel(1);
+});
+
+$('btnShopPause').addEventListener('click', ()=>{ $('pauseModal').classList.remove('show'); openShop('pause'); });
+$('btnNextLevel').addEventListener('click', ()=>{
+  hideComplete();
+  if(currentLevel<MAX_LEVELS){ currentLevel++; initLevel(currentLevel); }
+  else showToast('🏆 کل ۵۰ مرحله فتح شد!',4000);
+});
+$('btnShopComplete').addEventListener('click', ()=>{ $('completeModal').classList.remove('show'); openShop('complete'); });
+$('btnRestartComplete').addEventListener('click', ()=>{ hideComplete(); initLevel(currentLevel); });
+$('btnCloseShop2') && $('btnCloseShop2').addEventListener('click', closeShop);
+
+/* ---------- Toast ---------- */
+let toastTimer=null;
+function showToast(msg,dur=1800){
+  const t=$('toast'); t.textContent=msg; t.classList.add('show');
+  clearTimeout(toastTimer); toastTimer=setTimeout(()=>t.classList.remove('show'),dur);
+}
+
+/* ---------- Update loop ---------- */
+function update(dt,t){
+  if(paused) return;
+  if(cfg.hasPulse){
+    pulseEnergy=Math.min(1,pulseEnergy+dt*0.35);
+    $('pulseFill').style.width=Math.round(pulseEnergy*100)+'%';
+    if(pulseActive>0) pulseActive=Math.max(0,pulseActive-dt);
+  }
+  if(beaconTimer>0){ beaconTimer-=dt; if(beaconTimer<=0){ beaconTimer=0; beaconPath=[]; } }
+  if(invulnUntil>0) invulnUntil=Math.max(0,invulnUntil-dt);
+
+  if(player.animT<1){
+    const speedMult = (items[idx(player.tx,player.ty)]===CELL.SAND)?0.5:1.0;
+    player.animT += dt*8*speedMult;
+    if(player.animT>=1){
+      player.animT=1; player.x=player.tx; player.y=player.ty;
+      SFX.step();
+      onCellReached(player.x,player.y,t);
+    }
+  } else {
+    let dx=0,dy=0;
+    if(keysDown['w']||keysDown['arrowup']){ dy=-1; player.dirX=0; player.dirY=-1; }
+    else if(keysDown['s']||keysDown['arrowdown']){ dy=1; player.dirX=0; player.dirY=1; }
+    else if(keysDown['a']||keysDown['arrowleft']){ dx=-1; player.dirX=-1; player.dirY=0; }
+    else if(keysDown['d']||keysDown['arrowright']){ dx=1; player.dirX=1; player.dirY=0; }
+    if(dx||dy){
+      const nx=player.x+dx, ny=player.y+dy;
+      if(canMoveTo(nx,ny,t)){
+        if(items[idx(nx,ny)]===CELL.DOOR){
+          if(tryOpenDoor(nx,ny)){ player.tx=nx; player.ty=ny; player.animT=0; }
+        } else { player.tx=nx; player.ty=ny; player.animT=0; }
+      }
+    }
+  }
+}
+
+/* ---------- Render ---------- */
+function pulseRadiusMult(){ return save.upgrades.pulse===0?1:(save.upgrades.pulse===1?1.25:1.5); }
+function skinCols(){
+  return SHOP.skins.find(s=>s.id===save.activeSkin) || SHOP.skins[0];
+}
+function drawKeyShape(cx,cy,ts){
+  const r=ts*0.16, shaft=ts*0.36, sh=Math.max(3,ts*0.08);
+  const sx=cx-r*0.25, shX=sx+r*0.9, shY=cy-sh/2;
+  ctx.save();
+  ctx.fillStyle='#fbbf24'; ctx.strokeStyle='#fde68a'; ctx.lineWidth=Math.max(1.5,ts*0.06);
+  ctx.beginPath(); ctx.arc(sx,cy,r,0,Math.PI*2); ctx.fill();
+  ctx.beginPath(); ctx.arc(sx,cy,r*0.42,0,Math.PI*2); ctx.fillStyle='#141d3d'; ctx.fill();
+  ctx.fillStyle='#fbbf24';
+  ctx.fillRect(shX,shY,shaft,sh);
+  ctx.fillRect(shX+shaft*0.48,shY,sh,ts*0.18);
+  ctx.fillRect(shX+shaft*0.76,shY,sh,ts*0.12);
+  ctx.restore();
+}
+function drawStarShape(cx,cy,ts,t){
+  ctx.save(); ctx.translate(cx,cy); ctx.rotate(t*1.5);
+  ctx.beginPath();
+  for(let i=0;i<10;i++){
+    const r=(i%2===0)?ts*0.32:ts*0.14, a=(i*Math.PI)/5;
+    const x=Math.cos(a)*r, y=Math.sin(a)*r;
+    if(i===0) ctx.moveTo(x,y); else ctx.lineTo(x,y);
+  }
+  ctx.closePath();
+  ctx.fillStyle='#fde047'; ctx.fill(); ctx.strokeStyle='#fef08a'; ctx.lineWidth=1.5; ctx.stroke();
+  ctx.restore();
+}
+function render(t){
+  ctx.clearRect(0,0,W,H);
+  if(!cfg) return;
+  const pad=24*DPR;
+  const ts=Math.floor(Math.min((W-pad*2)/Wg,(H-pad*2)/Hg));
+  const ox=Math.floor((W-ts*Wg)/2), oy=Math.floor((H-ts*Hg)/2);
+  const px=x=>ox+x*ts, py=y=>oy+y*ts;
+  const curPx=px(player.x+(player.tx-player.x)*player.animT)+ts/2;
+  const curPy=py(player.y+(player.ty-player.y)*player.animT)+ts/2;
+
+  // floor + walls
+  for(let y=0;y<Hg;y++)for(let x=0;x<Wg;x++){
+    const X=px(x),Y=py(y);
+    if(grid[idx(x,y)]===1){
+      ctx.fillStyle=cfg.biome.wall; ctx.fillRect(X,Y,ts,ts);
+      ctx.strokeStyle=cfg.biome.accent; ctx.lineWidth=0.8;
+      ctx.strokeRect(X+0.5,Y+0.5,ts-1,ts-1);
+    } else {
+      ctx.fillStyle=((x+y)%2===0)?cfg.biome.floor1:cfg.biome.floor2;
+      ctx.fillRect(X,Y,ts,ts);
+      const it=items[idx(x,y)];
+      if(it===CELL.SAND){
+        ctx.fillStyle='rgba(217,119,6,0.35)'; ctx.fillRect(X,Y,ts,ts);
+        ctx.fillStyle='rgba(251,191,36,0.5)';
+        ctx.fillRect(X+ts*0.3,Y+ts*0.3,3,3); ctx.fillRect(X+ts*0.7,Y+ts*0.6,2,2);
+      } else if(it===CELL.LAVA){
+        const act=isLavaActive(x,y,t);
+        ctx.fillStyle=act?'#dc2626':'#7f1d1d';
+        ctx.fillRect(X+2,Y+2,ts-4,ts-4);
+        if(act){ ctx.fillStyle='#fef08a'; ctx.fillRect(X+ts*0.3,Y+ts*0.3,ts*0.4,ts*0.4); }
+      }
+    }
+  }
+
+  // exit portal
+  const exX=px(exitPos.x)+ts/2, exY=py(exitPos.y)+ts/2;
+  ctx.save(); ctx.translate(exX,exY); ctx.rotate(t*2);
+  ctx.strokeStyle=cfg.biome.accent; ctx.lineWidth=2.5;
+  ctx.beginPath(); ctx.arc(0,0,ts*0.38,0,Math.PI*1.5); ctx.stroke();
+  ctx.rotate(-t*4); ctx.strokeStyle='#fff'; ctx.lineWidth=1.5;
+  ctx.beginPath(); ctx.arc(0,0,ts*0.24,0,Math.PI*2); ctx.stroke();
+  ctx.restore();
+  for(let p=0;p<4;p++){
+    const pt=(t*3+p*1.56)%(Math.PI*2);
+    const pr=ts*0.5*(1-pt/(Math.PI*2));
+    ctx.fillStyle=cfg.biome.accent;
+    ctx.fillRect(exX+Math.cos(pt*2)*pr-1.5, exY+Math.sin(pt*2)*pr-1.5, 3,3);
+  }
+
+  // items
+  for(let y=0;y<Hg;y++)for(let x=0;x<Wg;x++){
+    const it=items[idx(x,y)];
+    if(!it||it===CELL.SAND||it===CELL.LAVA) continue;
+    const cx=px(x)+ts/2, cy=py(y)+ts/2;
+    if(it===CELL.KEY) drawKeyShape(cx,cy,ts);
+    else if(it===CELL.DOOR){
+      ctx.fillStyle='#ef4444'; ctx.fillRect(px(x)+2,py(y)+2,ts-4,ts-4);
+      ctx.strokeStyle='#fecaca'; ctx.lineWidth=2; ctx.strokeRect(px(x)+4,py(y)+4,ts-8,ts-8);
+      ctx.fillStyle='#7f1d1d'; ctx.fillRect(px(x)+ts*0.22,py(y)+ts*0.16,ts*0.56,ts*0.68);
+      ctx.fillStyle='#fde68a'; ctx.beginPath();
+      ctx.arc(px(x)+ts*0.64,py(y)+ts*0.52,ts*0.05,0,Math.PI*2); ctx.fill();
+    } else if(it===CELL.TELE){
+      ctx.fillStyle='#a855f7'; ctx.beginPath(); ctx.arc(cx,cy,ts*0.32,0,Math.PI*2); ctx.fill();
+      ctx.strokeStyle='#f3e8ff'; ctx.lineWidth=2; ctx.stroke();
+    } else if(it===CELL.STAR) drawStarShape(cx,cy,ts,t);
+  }
+
+  // beacon path
+  if(beaconTimer>0 && beaconPath.length>1){
+    ctx.save();
+    const alpha = Math.min(1, beaconTimer/0.8);
+    ctx.globalAlpha=alpha;
+    ctx.strokeStyle='#7dd3fc'; ctx.lineWidth=ts*0.14; ctx.lineCap='round'; ctx.lineJoin='round';
+    ctx.shadowColor='#38bdf8'; ctx.shadowBlur=14;
+    ctx.beginPath();
+    beaconPath.forEach((p,i)=>{
+      const X=px(p.x)+ts/2, Y=py(p.y)+ts/2;
+      if(i===0) ctx.moveTo(X,Y); else ctx.lineTo(X,Y);
+    });
+    ctx.stroke();
+    // moving dots
+    const totalLen = beaconPath.length-1;
+    const prog=(t*4)%1;
+    for(let i=0;i<3;i++){
+      const p2=(prog+i/3)%1;
+      const fi=p2*totalLen;
+      const i0=Math.floor(fi), i1=Math.min(beaconPath.length-1,i0+1);
+      const fr=fi-i0;
+      const X=px(beaconPath[i0].x+(beaconPath[i1].x-beaconPath[i0].x)*fr)+ts/2;
+      const Y=py(beaconPath[i0].y+(beaconPath[i1].y-beaconPath[i0].y)*fr)+ts/2;
+      ctx.fillStyle='#e0f2fe';
+      ctx.beginPath(); ctx.arc(X,Y,ts*0.09,0,Math.PI*2); ctx.fill();
+    }
+    ctx.restore();
+  }
+
+  // player (NO trail)
+  const skin=skinCols();
+  const blink = invulnUntil>0 && Math.floor(t*8)%2===0;
+  if(!blink){
+    ctx.save();
+    ctx.shadowColor=skin.glow; ctx.shadowBlur=16;
+    ctx.fillStyle=skin.col;
+    ctx.beginPath(); ctx.arc(curPx,curPy,ts*0.34,0,Math.PI*2); ctx.fill();
+    ctx.shadowBlur=0;
+    ctx.strokeStyle=skin.col2; ctx.lineWidth=2; ctx.stroke();
+    const eyeX=curPx+player.dirX*ts*0.12, eyeY=curPy+player.dirY*ts*0.12;
+    ctx.fillStyle='#062'; ctx.beginPath(); ctx.arc(eyeX,eyeY,ts*0.12,0,Math.PI*2); ctx.fill();
+    ctx.fillStyle='#fff'; ctx.beginPath(); ctx.arc(eyeX+player.dirX*ts*0.03,eyeY+player.dirY*ts*0.03,ts*0.04,0,Math.PI*2); ctx.fill();
+    ctx.restore();
+  } else {
+    ctx.strokeStyle=skin.glow; ctx.lineWidth=2;
+    ctx.beginPath(); ctx.arc(curPx,curPy,ts*0.34,0,Math.PI*2); ctx.stroke();
+  }
+
+  // darkness
+  if(cfg.hasDark && beaconTimer<=0){ // beacon active => no dark fog, whole board visible
+    darkCtx.clearRect(0,0,W,H);
+    darkCtx.fillStyle='#02040a'; darkCtx.fillRect(0,0,W,H);
+    const base=Math.max(cfg.fogRadius*pulseRadiusMult()*ts, 120*DPR);
+    const extra = pulseActive>0 ? pulseActive*18*ts : 0;
+    const lr=base+extra;
+    darkCtx.globalCompositeOperation='destination-out';
+    const g=darkCtx.createRadialGradient(curPx,curPy,0,curPx,curPy,lr);
+    g.addColorStop(0,'rgba(0,0,0,1)'); g.addColorStop(0.75,'rgba(0,0,0,1)'); g.addColorStop(1,'rgba(0,0,0,0)');
+    darkCtx.fillStyle=g; darkCtx.beginPath(); darkCtx.arc(curPx,curPy,lr,0,Math.PI*2); darkCtx.fill();
+    darkCtx.globalCompositeOperation='source-over';
+    ctx.drawImage(darkCanvas,0,0);
+    ctx.strokeStyle='rgba(56,189,248,0.4)'; ctx.lineWidth=2;
+    ctx.beginPath(); ctx.arc(curPx,curPy,lr*0.78,0,Math.PI*2); ctx.stroke();
+  }
+}
+function loop(now){
+  const dt=Math.min(0.06,(now-lastTime)/1000); lastTime=now;
+  update(dt, now/1000);
+  render(now/1000);
+  requestAnimationFrame(loop);
+}
+resize();
+updateHUD();
+
+/* shop close wiring */
+(function(){
+  document.getElementById('btnShopClose2').addEventListener('click', closeShop);
+})();
+</script>
+</body>
+</html>
